@@ -1,0 +1,44 @@
+User Authentication:
+
+Users can log in using a username and password.
+Passwords are not stored directly; you should consider adding a password hashing mechanism for production use.
+
+Session Management:
+
+The session object is used to store and retrieve the user's session information.
+If a user is logged in, their user_id is stored in the session.
+
+Database Models:
+
+Two main models are defined in models.py: User and ShortLink.
+User model stores user information for authentication.
+ShortLink model represents short URLs with attributes such as original_url, short_code, user_id, created_at, and expiration_date.
+
+Short Link Generation:
+
+Short links are created with a random short code of length 5 using the generate_short_code function.
+The short links are associated with the user who created them.
+
+Link Expiration:
+
+Short links have an expiration_date field, and by default, they are valid for 48 hours.
+The is_valid method of the ShortLink model checks if the link is still valid based on the expiration date.
+
+Route Handling:
+
+Routes are defined in routes.py, handling operations such as home, login, logout, link creation, and analytics.
+The home route displays the dashboard if a user is logged in; otherwise, it prompts the user to log in.
+
+Flashing Messages:
+
+Flash messages are used to provide feedback to users.
+Different categories of messages (success, error, info) are used for clear communication.
+
+Separation of Concerns:
+
+Code is organized into separate files (config.py, models.py, routes.py, and app.py) for better maintainability.
+Database models (User and ShortLink) are defined in models.py.
+
+Database Initialization:
+
+The db.create_all() method in app.py initializes the database based on the defined models.
