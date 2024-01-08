@@ -1,0 +1,43 @@
+1.Flask App Initialization:
+An instance of the Flask web application is created.
+The Flask app instance is named app.
+
+2.Secret Key Configuration:
+A secret key is set for the application using app.secret_key.
+The secret key is a security measure used for session management.
+
+3.Session Lifetime Configuration:
+The lifetime of a permanent session is configured to be 10 minutes using app.config['PERMANENT_SESSION_LIFETIME'].
+
+4.Cookie Timeout Configuration:
+A global variable COOKIE_TIME_OUT is defined to set the timeout for cookies.
+By default, it is set to 5 minutes, but there's a commented-out alternative with a 7-day timeout.
+
+5.MySQL Database Configuration:
+An instance of the MySQL class (mysql) is created for managing the MySQL database connection.
+MySQL database configurations, such as user, password, database name, and host, are set using app.config.
+
+6.Routes and Views:
+The application defines several routes and views using the @app.route decorator.
+The routes include the root URL (/), the login URL (/login), the form submission URL (/submit), and the logout URL (/logout).
+Views include functions like index, login, login_submit, and logout to handle these routes.
+
+7.User Session Handling:
+The session object is used to store and retrieve user session information.
+The index route checks if the user is logged in by checking if the 'email' key is in the session.
+
+8.Login Form Handling:
+The /login route renders an HTML template for user login.
+The /submit route handles form submissions from the login page.
+It checks if the user credentials are valid, and if so, logs the user in.
+Optionally, it sets cookies to remember the user.
+
+9.Cookie Handling:
+The application uses cookies to remember user details.
+It checks for the presence of cookies, and if found, attempts to log in the user using stored credentials.
+
+10.Logout Handling:
+The /logout route removes the 'email' key from the session, effectively logging the user out.
+
+11.Application Run:
+The application runs in debug mode if executed directly (if __name__ == '__main__': app.run(debug=True))
